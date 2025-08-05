@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Validador de CSV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800">Importar e Validar CSV</h1>
+
+    <input type="file" id="csvFile" accept=".csv" class="mb-4 block w-full text-sm text-gray-500
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-blue-50 file:text-blue-700
+      hover:file:bg-blue-100
+    ">
+
+    <div id="result" class="mt-6 space-y-2"></div>
+  </div>
+
+  <script>
+    document.getElementById('csvFile').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const linhas = e.target.result.split('\n').map(l => l.trim()).filter(l => l !== '');
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = ''; // limpa antes
+
+        linhas.forEach((linha, index) => {
+          const partes = linha.split(";");
+
+          const linhaDiv = document.createElement('div');
+          linhaDiv.className = 'border p-4 rounded bg-white shadow-sm';
+
+          const header = document.createElement('p');
+          header.className = 'font-semibold text-gray-700 mb-2';
+          header.textContent = `Linha ${index + 1}: ${linha}`;
+          linhaDiv.appendChild(header);
+
+          // Validar estrutura
+          if (partes.length !== 4) {
+            const erro = document.createElement('p');
+            erro.className = 'text-red-600';
+            erro.textContent = '❌ Linha inválida: número incorreto de campos';
+            linhaDiv.appendChild(erro);
+            resultDiv.appendChild(linhaDiv);
+            return;
+          }
+
+          const id = partes[0];
+          const nome = partes[1];
+          const cpf = partes[2];
+          const dataNascimento = partes[3];
+
+          // Regexes
+          const regexID = /^\d+$/;
+          const regexNome = /^([A-ZÁ-Úa-zá-ú]+ )+[A-ZÁ-Úa-zá-ú]+$/;
+          const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+          const regexData = /^\d{4}-\d{2}-\d{2}$/;
+
+          // ID
+          if (regexID.test(id) && parseInt(id) > 0) {
+            linhaDiv.appendChild(validSpan("✅ ID válido"));
+          } else {
+            linhaDiv.appendChild(invalidSpan("❌ ID inválido"));
+          }
+
+          // Nome
+          if (regexNome.test(nome.trim())) {
+            linhaDiv.appendChild(validSpan("✅ Nome válido"));
+          } else {
+            linhaDiv.appendChild(invalidSpan("❌ Nome inválido"));
+          }
+
+          // CPF
+          if (regexCPF.test(cpf)) {
+            linhaDiv.appendChild(validSpan("✅ CPF com formato válido"));
+          } else {
+            linhaDiv.appendChild(invalidSpan("❌ CPF com formato inválido"));
+          }
+
+          // Data
+          if (regexData.test(dataNascimento)) {
+            const data = new Date(dataNascimento);
+            if (!isNaN(data.getTime())) {
+              linhaDiv.appendChild(validSpan("✅ Data de nascimento válida"));
+            } else {
+              linhaDiv.appendChild(invalidSpan("❌ Data de nascimento inexistente"));
+            }
+          } else {
+            linhaDiv.appendChild(invalidSpan("❌ Formato de data inválido"));
+          }
+
+          resultDiv.appendChild(linhaDiv);
+        });
+      };
+
+      reader.readAsText(file);
+    });
+
+    function validSpan(texto) {
+      const p = document.createElement('p');
+      p.className = 'text-green-700';
+      p.textContent = texto;
+      return p;
+    }
+
+    function invalidSpan(texto) {
+      const p = document.createElement('p');
+      p.className = 'text-red-600';
+      p.textContent = texto;
+      return p;
+    }
+  </script>
+</body>
+</html>
