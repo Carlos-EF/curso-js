@@ -21,7 +21,7 @@ function converterMoedas() {
 
     let conversao = valor * 5;
 
-    parseFloat(alert("O valor digitado convertido em dolar ficará " + conversao));
+    alert("O valor digitado convertido em dolar ficará: US$ " + conversao.toFixed(2).replace(".", ","));
 }
 
 function acenderLuz() {
@@ -31,7 +31,7 @@ function acenderLuz() {
 
     if (ordem === 1) {
         console.log("A luz está acesa.");
-    } else if (ordem ===0){
+    } else if (ordem === 0) {
         console.log("A luz está apagada.");
     } else {
         console.log("Nada aconteceu.");
@@ -58,7 +58,7 @@ function calcularMedia() {
     let media = (nota + nota1 + nota2) / 3;
 
     console.log("A média das notas é " + media.toFixed(2));
-} 
+}
 
 function calcularDesconto() {
     let preco = parseFloat(prompt("Digite o preço original do produto."));
@@ -81,15 +81,32 @@ function converterTemperatura() {
 }
 
 function calcular() {
-    let numero = parseInt(prompt("Digite o primeiro número."));
+    let numero1 = parseInt(prompt("Digite o primeiro número."));
 
-    let numero1 = parseInt(prompt("Digite o segundo número."));
+    let numero2 = parseInt(prompt("Digite o segundo número."));
 
-    let soma = numero + numero1;
+    let soma = numero1 + numero2;
 
-    let multiplicacao = numero * numero1;
+    let multiplicacao = numero1 * numero2;
 
     console.log("A soma é " + soma);
 
     console.log("O produto é " + multiplicacao);
+}
+
+function fazerTrocaValores() {
+    let numero1 = parseInt(prompt("Me diga um número."));
+
+    let numero2 = parseInt(prompt("Me diga um outro número."));
+
+    let substituicao1 = numero1 + numero2;
+
+    let substituicao2 = numero1 - numero2;
+
+    console.log("O primeiro número que você me disse foi " + numero1 + "." +
+        "\nO segundo número que você me disse foi " + numero2 + "." +
+        "\n\nComo eu não gostei das suas escolhas, a partir de agora os valores dos números são: " +
+        "\nNúmero 1 = " + substituicao1 + ";" +
+        "\nNúmero 2 = " + substituicao2 + "."
+    );
 }
