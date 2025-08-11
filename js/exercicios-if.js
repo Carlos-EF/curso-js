@@ -163,7 +163,7 @@ function validarTriangulo() {
 
     let lado3 = parseFloat(prompt("Digite o valor desejado."));
 
-    if (lado1 + lado2 > lado3 || lado1 + lado3 > lado2 || lado2 + lado3 > lado1) {
+    if (lado1 + lado2 > lado3 && lado1 + lado3 > lado2 && lado2 + lado3 > lado1) {
         alert("Triângulo válido!");
     } else {
         alert("Triângulo inválido!");
