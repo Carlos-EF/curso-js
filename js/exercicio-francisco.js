@@ -33,7 +33,7 @@ function apresentarDadosNumero() {
         maior10 = "Igual a 10";
     }
 
-    if (numero <= 50) {
+    if (numero < 50) {
         menorIgual50 = "Menor que 50";
     } else if (numero === 50) {
         menorIgual50 = "Igual a 50";
@@ -41,10 +41,12 @@ function apresentarDadosNumero() {
         menorIgual50 = "Maior que 50";
     }
 
-    if (numero <= -10) {
+    if (numero < -10) {
         menor10Negativo = "Menor do que -10";
-    } else {
+    } else if (numero > -10) {
         menor10Negativo = "Maior que -10";
+    } else {
+        menor10Negativo = "Igual a -10";
     }
 
     if (numero === 30) {
@@ -181,7 +183,7 @@ function apresentarOrdemCrescente() {
 //exercício 17
 
 function apresentarAnoExtenso() {
-    let ano = (prompt("Digite seu ano de nascimento.").trim());
+    let ano = (prompt("Digite seu ano de nascimento no formato.").trim());
 
     let partes = ano.split('');
 
@@ -485,53 +487,53 @@ function apresentarHoraExtenso() {
         horasApresentado = "Vinte e três horas";
     } else if (horas === 0 && segundos === 0) {
         horasApresentado = "Meia-noite";
-    } else if (horas === 1 && minutos !== 0) {
+    } else if (horas === 1) {
         horasApresentado = "Uma hora da manhã,";
-    } else if (horas === 2 && minutos !== 0) {
+    } else if (horas === 2) {
         horasApresentado = "Duas horas da manhã,";
-    } else if (horas === 3 && minutos !== 0) {
+    } else if (horas === 3) {
         horasApresentado = "Três horas da manhã,";
-    } else if (horas === 4 && minutos !== 0) {
+    } else if (horas === 4) {
         horasApresentado = "Quatro horas da manhã,";
-    } else if (horas === 5 && minutos !== 0) {
+    } else if (horas === 5) {
         horasApresentado = "Cinco horas da manhã,";
-    } else if (horas === 6 && minutos !== 0) {
+    } else if (horas === 6) {
         horasApresentado = "Seis horas da manhã,";
-    } else if (horas === 7 && minutos !== 0) {
+    } else if (horas === 7) {
         horasApresentado = "Sete horas da manhã,";
-    } else if (horas === 8 && minutos !== 0) {
+    } else if (horas === 8) {
         horasApresentado = "Oito horas da manhã,";
-    } else if (horas === 9 && minutos !== 0) {
+    } else if (horas === 9) {
         horasApresentado = "Nove horas da manhã,";
-    } else if (horas === 10 && minutos !== 0) {
+    } else if (horas === 10) {
         horasApresentado = "Dez horas da manhã,";
-    } else if (horas === 11 && minutos !== 0) {
+    } else if (horas === 11) {
         horasApresentado = "Onze horas da manhã,";
-    } else if (horas === 12 && minutos !== 0) {
+    } else if (horas === 12) {
         horasApresentado = "Meio-dia,";
-    } else if (horas === 13 && minutos !== 0) {
+    } else if (horas === 13) {
         horasApresentado = "Treze horas,";
-    } else if (horas === 14 && minutos !== 0) {
+    } else if (horas === 14) {
         horasApresentado = "Quatorze horas,";
-    } else if (horas === 15 && minutos !== 0) {
+    } else if (horas === 15) {
         horasApresentado = "Quinze horas,";
-    } else if (horas === 16 && minutos !== 0) {
+    } else if (horas === 16) {
         horasApresentado = "Dezesseis horas,";
-    } else if (horas === 17 && minutos !== 0) {
+    } else if (horas === 17) {
         horasApresentado = "Dezessete horas,";
-    } else if (horas === 18 && minutos !== 0) {
+    } else if (horas === 18) {
         horasApresentado = "Dezoito horas,";
-    } else if (horas === 19 && minutos !== 0) {
+    } else if (horas === 19) {
         horasApresentado = "Dezenove horas,";
-    } else if (horas === 20 && minutos !== 0) {
+    } else if (horas === 20) {
         horasApresentado = "Vinte horas,";
-    } else if (horas === 21 && minutos !== 0) {
+    } else if (horas === 21) {
         horasApresentado = "Vinte e uma horas,";
-    } else if (horas === 22 && minutos !== 0) {
+    } else if (horas === 22) {
         horasApresentado = "Vinte e duas horas,";
-    } else if (horas === 23 && minutos !== 0) {
+    } else if (horas === 23) {
         horasApresentado = "Vinte e três horas,";
-    } else if (horas === 0 && minutos !== 0) {
+    } else if (horas === 0) {
         horasApresentado = "Meia-noite,";
     } 
 
