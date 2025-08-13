@@ -99,14 +99,17 @@ function fazerTrocaValores() {
 
     let numero2 = parseInt(prompt("Me diga um outro número."));
 
-    let substituicao1 = numero1 + numero2;
+    temp = numero1;
 
-    let substituicao2 = numero1 - numero2;
+    numero1 = numero2;
+
+    numero2 = temp;
+
 
     console.log("O primeiro número que você me disse foi " + numero1 + "." +
         "\nO segundo número que você me disse foi " + numero2 + "." +
-        "\n\nComo eu não gostei das suas escolhas, a partir de agora os valores dos números são: " +
-        "\nNúmero 1 = " + substituicao1 + ";" +
-        "\nNúmero 2 = " + substituicao2 + "."
+        "\n\nTrocando a ordem deles: " +
+        "\nNúmero 1 = " + temp + ";" +
+        "\nNúmero 2 = " + numero1 + "."
     );
 }
