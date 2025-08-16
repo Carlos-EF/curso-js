@@ -166,7 +166,7 @@ function validarTriangulo() {
         alert("Triângulo válido!" +
             "\nTipo: " + tipoTriangulo
         );
-    } else if (validacaoTriangulo === false) {
+    } else if (validacaoTriangulo === false || lado1 === 0 || lado2 === 0 || lado3 === 0) {
         alert("Triângulo inválido!")
     }
 };
@@ -205,3 +205,152 @@ function ganharBolsa() {
     }
 };
 
+function liberarEmprestimo() {
+    let salario = parseFloat(prompt("Digite seu salário."));
+
+    let tempoEmpresa = parseFloat(prompt("Digite quanto tempo está no seu emprego atual."));
+
+    let parcela = parseFloat(prompt("Digite o valor da parcela."));
+
+    const tempoNecessario = tempoEmpresa >= 6;
+
+    const parcelaNecessaria = parcela <= (salario * 0.3);
+
+    const negativado = confirm("Você está negativado?");
+
+    let demonstrarNegativado;
+
+    let demonstrarTempo;
+
+    let demonstrarParcela;
+
+    if (tempoNecessario === false) {
+        demonstrarTempo = "Tempo de empresa abaixo do que o necessário."
+    };
+
+    if (negativado === true) {
+        demonstrarNegativado = "Você está negativado."
+    };
+
+    if (parcelaNecessaria === false) {
+        demonstrarParcela = "Valor da parcela muito alto."
+    };
+
+    if (tempoNecessario === true && parcelaNecessaria === true && negativado === false) {
+        alert("Parabéns! Seu empréstimo foi aprovado!");
+    } else if (tempoNecessario === true && parcelaNecessaria === true && negativado === true) {
+        alert("Desculpa, seu empréstimo foi negado pelo motivo:" +
+            "\n" + demonstrarNegativado
+        );
+    } else if (tempoNecessario === false && parcelaNecessaria === true && negativado === false) {
+        alert("Desculpa, seu empréstimo foi negado pelo motivo:" +
+            "\n" + demonstrarTempo
+        );
+    } else if (tempoNecessario === true && parcelaNecessaria === false && negativado === false) {
+        alert("Desculpa, seu empréstimo foi negado pelo motivo:" +
+            "\n" + demonstrarParcela
+        );
+    } else if (tempoNecessario === false && parcelaNecessaria === false && negativado === false) {
+        alert("Desculpa, seu empréstimo foi negado pelo motivo:" +
+            "\n" + demonstrarTempo +
+            "\n" + demonstrarParcela
+        );
+    } else if (tempoNecessario === false && parcelaNecessaria === true && negativado === true) {
+        alert("Desculpa, seu empréstimo foi negado pelo motivo:" +
+            "\n" + demonstrarTempo +
+            "\n" + demonstrarNegativado
+        );
+    } else if (tempoNecessario === false && parcelaNecessaria === false && negativado === true) {
+        alert("Desculpa, seu empréstimo foi negado pelo motivo:" +
+            "\n" + demonstrarTempo +
+            "\n" + demonstrarParcela +
+            "\n" + demonstrarNegativado
+        );
+    } else if (tempoNecessario === true && parcelaNecessaria === false && negativado === true) {
+        alert("Desculpa, seu empréstimo foi negado pelo motivo:" +
+            "\n" + demonstrarParcela +
+            "\n" + demonstrarNegativado
+        );
+    }
+};
+
+// function calcularGravidadeMulta() {
+
+//     let velocidade = parseInt(prompt("Digite a velocidade na qual você estava dirigindo."));
+
+//     let limite = parseInt(prompt("Digite o limite da via."));
+
+//     let gravidade;
+// };
+
+function serEducado() {
+    let hora = parseFloat(prompt("Digite somente a hora atual."));
+
+    if (hora >= 5 && hora <= 11) {
+        alert("Bom dia!");
+    } else if (hora >= 12 && hora <= 17) {
+        alert("Boa tarde!");
+    } else if (hora >= 18 && hora <= 23 || hora <= 4 && hora >= 0) {
+        alert("Boa noite!");
+    } else if (hora < 0 || hora > 24) {
+        alert("Hora inválida.")
+    }
+};
+
+function venderPlano() {
+    let planoCelular = parseInt(prompt("Selecione o seu plano desejado." +
+        "\nDigite 1 = Basic" +
+        "\nDigite 2 = Plus" +
+        "\nDigite 3 = Pro"
+    ));
+
+    let basic = 39;
+
+    let plus = 59;
+
+    let pro = 79;
+
+    const internetExtra = confirm("Deseja internet extra no seu plano?");
+
+    if (planoCelular === 1 && internetExtra === true) {
+        alert("Desculpe, porém o plano no qual você tentou contratar não aceita internet extra.");
+    } else if (planoCelular === 1 && internetExtra === false) {
+        alert("Valor do plano contratado: R$ " + basic);
+    }
+
+    if (planoCelular === 2 && internetExtra === true) {
+        alert("Valor do plano contratado com internet extra: R$ " + (plus + 15));
+    } else if (planoCelular === 2 && internetExtra === false) {
+        alert("Valor do plano contratado: R$ " + plus);
+    }
+
+    if (planoCelular === 3 && internetExtra === true) {
+        alert("Valor do plano contratado com internet extra: R$ " + (pro + 15));
+    } else if (planoCelular === 2 && internetExtra === false) {
+        alert("Valor do plano contratado: R$ " + pro);
+    }
+};
+
+function validarData() {
+    let dataEscolhida = prompt("Digite uma data no formato XX/XX/XXXX");
+
+    let partes = dataEscolhida.split("/");
+
+    let dia = parseInt(partes[0].padStart(2, 0));
+
+    let mes = parseInt(partes[1].padStart(2, 0));
+
+    let ano = parseInt(partes[2]);
+
+    const anoBissexto = ano % 4 === 0 || ano % 400 === 0 && ano % 100 === 1;
+
+    if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12) {
+        alert("Data válida");
+    } else if (dia >= 1 && dia <= 30 && mes === 4 || dia >= 1 && dia <= 30 && mes === 6 || dia >= 1 && dia <= 30 && mes === 9 || dia >= 1 && dia <= 30 && mes === 11) {
+        alert("Data válida");
+    } else if(dia >= 1 && dia === 29 && anoBissexto === true) {
+        alert("Data válida");
+    }  else if(dia >= 1 && dia <= 28 && anoBissexto === true) {
+        alert("Data inválida");
+    }
+};
