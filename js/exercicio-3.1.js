@@ -342,15 +342,188 @@ function validarData() {
 
     let ano = parseInt(partes[2]);
 
-    const anoBissexto = ano % 4 === 0 || ano % 400 === 0 && ano % 100 === 1;
-
-    if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12) {
-        alert("Data válida");
-    } else if (dia >= 1 && dia <= 30 && mes === 4 || dia >= 1 && dia <= 30 && mes === 6 || dia >= 1 && dia <= 30 && mes === 9 || dia >= 1 && dia <= 30 && mes === 11) {
-        alert("Data válida");
-    } else if(dia >= 1 && dia === 29 && anoBissexto === true) {
-        alert("Data válida");
-    }  else if(dia >= 1 && dia <= 28 && anoBissexto === true) {
-        alert("Data inválida");
+    if (dia > 0 && dia <= 31 && mes === 1) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 31 && mes === 3) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 31 && mes === 5) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 31 && mes === 7) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 31 && mes === 8) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 31 && mes === 10) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 31 && mes === 12) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 30 && mes === 4) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 30 && mes === 6) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 30 && mes === 9) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 30 && mes === 11) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 28 && mes === 2) {
+        alert("Data válida.");
+    } else if (dia > 0 && dia <= 29 && mes === 2 && ano % 4 === 0 || ano % 400 === 0 && ano % 100 === 1) {
+        alert("Data válida.");
+    } else {
+        alert("Data inválida.")
     }
 };
+
+function calcularEnergia() {
+    let consumo = parseFloat(prompt("Digite o seu consumo de energia."));
+
+    let calculoConsumo100 = consumo * 0.60;
+
+    let calculoConsumo199 = consumo * 0.75;
+
+    let calculoConsumo150 = (consumo * 0.75) - (consumo * 0.15);
+
+    let calculoConsumo200 = consumo * 0.90;
+
+    const tarifaSocial = confirm("É tarifa social?");
+
+    if (consumo < 0) {
+        alert("Consumo inválido.")
+    } else if (consumo >= 1 && consumo <= 100) {
+        alert("Valor final do consumo = R$ " + calculoConsumo100.toFixed(2).replace(".", ","));
+    } else if (consumo >= 101 && consumo <= 150 && tarifaSocial === true) {
+        alert("Valor final do consumo (com 15% de desconto da tarifa) = R$ " + calculoConsumo150.toFixed(2).replace(".", ","));
+    } else if (consumo >= 101 && consumo <= 150 && tarifaSocial === false) {
+        alert("Valor final do consumo = R$ " + calculoConsumo199.toFixed(2).replace(".", ","));
+    } else if (consumo >= 151 && consumo <= 199) {
+        alert("Valor final do consumo = R$ " + calculoConsumo199.toFixed(2).replace(".", ","));
+    } else if (consumo >= 200) {
+        alert("Valor final do consumo = R$ " + calculoConsumo200.toFixed(2).replace(".", ","));
+    }
+};
+
+function pagarMeiaEntrada() {
+    let idade = parseInt(prompt("Digite a sua idade"));
+
+    let regraIdade;
+
+    const estudante = confirm("Você é estudante?");
+
+    let regraEstudante;
+
+    if (idade < 12) {
+        regraIdade = "Menor de 12 anos.";
+    } else if (idade >= 60) {
+        regraIdade = "Pessoa com ou acima de 60 anos.";
+    }
+
+    if (estudante === true) {
+        regraEstudante = "Pessoa estudante.";
+    } else if (estudante === false) {
+        regraEstudante = "";
+    }
+
+    if (idade < 12) {
+        alert("Você tem direito de pagar meia-entrada pois:" +
+            "\n" + regraIdade
+        );
+    } else if (idade >= 60) {
+        alert("Você tem direito de pagar meia-entrada pois:" +
+            "\n" + regraIdade
+        );
+    } else if (estudante === true) {
+        alert("Você tem direito de pagar meia-entrada pois:" +
+            "\n" + regraEstudante
+        );
+    } else {
+        alert("Você pagará o preço cheio.");
+    }
+};
+
+function jogarParTrincaSequencia() {
+    let numero1 = parseInt(prompt("Digite um número."));
+
+    let numero2 = parseInt(prompt("Digite um número."));
+
+    let numero3 = parseInt(prompt("Digite um número."));
+
+    let jeitoGanhar;
+
+    let comeco;
+
+    let meio;
+
+    let fim;
+
+
+    if (numero1 === numero2 && numero3 === numero1) {
+        jeitoGanhar = "Ganhou com trinca!"
+    }
+
+    if (numero1 === numero2 || numero1 === numero3 || numero3 === numero2) {
+        jeitoGanhar = "Ganhou com par!"
+    }
+
+    if (numero1 <= numero2 && numero2 <= numero3) {
+        jeitoGanhar = "Ganhou com sequência: "
+        comeco = numero1;
+        meio = numero2;
+        fim = numero3;
+    }
+
+    if (numero1 <= numero3 && numero3 <= numero2) {
+        jeitoGanhar = "Ganhou com sequência: "
+        comeco = numero1;
+        meio = numero3;
+        fim = numero2;
+    }
+
+    if (numero2 <= numero1 && numero1 <= numero3) {
+        jeitoGanhar = "Ganhou com sequência: "
+        comeco = numero2;
+        meio = numero1;
+        fim = numero3;
+    }
+
+    if (numero2 <= numero3 && numero3 <= numero1) {
+        jeitoGanhar = "Ganhou com sequência: "
+        comeco = numero2;
+        meio = numero3;
+        fim = numero1;
+    }
+
+    if (numero3 <= numero1 && numero1 <= numero2) {
+        jeitoGanhar = "Ganhou com sequência: "
+        comeco = numero3;
+        meio = numero1;
+        fim = numero2;
+    }
+
+    if (numero3 <= numero2 && numero2 <= numero1) {
+        jeitoGanhar = "Ganhou com sequência: "
+        comeco = numero3;
+        meio = numero2;
+        fim = numero1;
+    }
+
+    if (numero1 < 0 && numero1 > 6 || numero2 < 0 && numero2 > 6 || numero3 < 0 && numero3 > 6) {
+        alert("Só pode ser números de 1 a 6.");
+    } else if (numero1 === numero2 && numero3 === numero1) {
+        alert(jeitoGanhar);
+    } else if (numero1 === numero2 || numero1 === numero3 || numero3 === numero2) {
+        alert(jeitoGanhar);
+    } else if (numero1 < numero2 && numero2 < numero3) {
+        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");
+    } else if (numero1 < numero3 && numero3 < numero2) {
+        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");   
+    } else if (numero2 < numero1 && numero1 < numero3) {
+        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");    
+    } else if (numero2 < numero3 && numero3 < numero1) {
+        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");    
+    } else if (numero3 < numero1 && numero1 < numero2) {
+        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");    
+    } else if (numero3 < numero2 && numero2 < numero1) {
+        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");    
+    } else {
+        alert("Sem combinação! Mais sorte da próxima vez.")
+    }
+}
