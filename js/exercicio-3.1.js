@@ -459,71 +459,192 @@ function jogarParTrincaSequencia() {
         jeitoGanhar = "Ganhou com trinca!"
     }
 
-    if (numero1 === numero2 || numero1 === numero3 || numero3 === numero2) {
+    if (numero1 === numero2 && numero1 !== numero3 || numero1 === numero3 && numero1 !== numero2 || numero3 === numero2 && numero1 !== numero3) {
         jeitoGanhar = "Ganhou com par!"
     }
 
-    if (numero1 <= numero2 && numero2 <= numero3) {
-        jeitoGanhar = "Ganhou com sequência: "
-        comeco = numero1;
-        meio = numero2;
-        fim = numero3;
+    if (numero1 < numero2 && numero2 < numero3) {
+        jeitoGanhar = "Ganhou com sequência!"
     }
 
-    if (numero1 <= numero3 && numero3 <= numero2) {
-        jeitoGanhar = "Ganhou com sequência: "
-        comeco = numero1;
-        meio = numero3;
-        fim = numero2;
+    if (numero1 < numero3 && numero3 < numero2) {
+        jeitoGanhar = "Ganhou com sequência!"
     }
 
-    if (numero2 <= numero1 && numero1 <= numero3) {
-        jeitoGanhar = "Ganhou com sequência: "
-        comeco = numero2;
-        meio = numero1;
-        fim = numero3;
+    if (numero2 < numero1 && numero1 < numero3) {
+        jeitoGanhar = "Ganhou com sequência!"
     }
 
-    if (numero2 <= numero3 && numero3 <= numero1) {
-        jeitoGanhar = "Ganhou com sequência: "
-        comeco = numero2;
-        meio = numero3;
-        fim = numero1;
+    if (numero2 < numero3 && numero3 < numero1) {
+        jeitoGanhar = "Ganhou com sequência!"
     }
 
-    if (numero3 <= numero1 && numero1 <= numero2) {
-        jeitoGanhar = "Ganhou com sequência: "
-        comeco = numero3;
-        meio = numero1;
-        fim = numero2;
+    if (numero3 < numero1 && numero1 < numero2) {
+        jeitoGanhar = "Ganhou com sequência!"
     }
 
-    if (numero3 <= numero2 && numero2 <= numero1) {
-        jeitoGanhar = "Ganhou com sequência: "
-        comeco = numero3;
-        meio = numero2;
-        fim = numero1;
+    if (numero3 < numero2 && numero2 < numero1) {
+        jeitoGanhar = "Ganhou com sequência!"
     }
 
-    if (numero1 < 0 && numero1 > 6 || numero2 < 0 && numero2 > 6 || numero3 < 0 && numero3 > 6) {
+    if (numero1 <= 0 || numero2 <= 0 || numero3 <= 0) {
+        alert("Só pode ser números de 1 a 6.");
+    } else if (numero1 >= 7 || numero2 >= 7 || numero3 >= 7) {
         alert("Só pode ser números de 1 a 6.");
     } else if (numero1 === numero2 && numero3 === numero1) {
         alert(jeitoGanhar);
-    } else if (numero1 === numero2 || numero1 === numero3 || numero3 === numero2) {
+    } else if (numero1 === numero2 && numero1 !== numero3 || numero1 === numero3 && numero1 !== numero2 || numero3 === numero2 && numero1 !== numero3) {
         alert(jeitoGanhar);
     } else if (numero1 < numero2 && numero2 < numero3) {
-        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");
+        alert(jeitoGanhar);
     } else if (numero1 < numero3 && numero3 < numero2) {
-        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");   
+        alert(jeitoGanhar);
     } else if (numero2 < numero1 && numero1 < numero3) {
-        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");    
+        alert(jeitoGanhar);
     } else if (numero2 < numero3 && numero3 < numero1) {
-        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");    
+        alert(jeitoGanhar);
     } else if (numero3 < numero1 && numero1 < numero2) {
-        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");    
+        alert(jeitoGanhar);
     } else if (numero3 < numero2 && numero2 < numero1) {
-        alert(jeitoGanhar + comeco + ", " + meio + ", " + fim + ".");    
+        alert(jeitoGanhar);
     } else {
         alert("Sem combinação! Mais sorte da próxima vez.")
     }
+}
+
+function calcularEstoque() {
+    // let quantidade = parseInt(prompt("Digite a quantidade no estoque."));
+
+    // let estoqueMinimo = parseInt(prompt("Digite a quantidade mínima no estoque."));
+
+    // let calculoMinimo = (estoqueMinimo * 2);
+
+    // if (quantidade <= 0) {
+    //     alert("Produto esgotado.")
+    // } else if (0 <= estoqueMinimo) {
+    //     alert("Crítica.");
+    // } else if (estoqueMinimo <= calculoMinimo) {
+    //     alert("Baixa.");
+    // } else if (quantidade >= calculoMinimo) {
+    //     alert("OK!");
+    // }
+};
+
+function calcularContaRestaurante() {
+    let valorConta = parseFloat(prompt("Digite o valor da conta."));
+
+    let qualidade = parseInt(prompt("Avalie o serviço recebido com: 1 = Ruim, 2 = OK e 3 = Ótima."));
+
+    let quantidadePessoas = parseInt(prompt("Quantas pessoas na mesa?"));
+
+    const servicoAdicional = confirm("Teve serviço adicional?");
+
+    let contaFinal = valorConta / quantidadePessoas;
+
+    if (quantidadePessoas <= 0) {
+        alert("Número de pessoas inválido.");
+    } else if (qualidade === 1 && servicoAdicional === true) {
+        alert("Valor da conta = R$ " + valorConta +
+            "\nCom 5% de gorjeta (Ruim) e 10% de serviço adicional: R$ " + (((valorConta * 0.05) + (valorConta * 0.10)) + valorConta).toFixed(2).replace(".", ",") +
+            "\nValor para cada pessoa: R$ " + ((((valorConta * 0.05) + (valorConta * 0.10)) + valorConta) / quantidadePessoas).toFixed(2).replace(".", ",")
+        );
+    } else if (qualidade === 2 && servicoAdicional === true) {
+        alert("Valor da conta = R$ " + valorConta +
+            "\nCom 10% de gorjeta (OK) e 10% de serviço adicional: R$ " + (((valorConta * 0.10) + (valorConta * 0.10)) + valorConta).toFixed(2).replace(".", ",") +
+            "\nValor para cada pessoa: R$ " + ((((valorConta * 0.10) + (valorConta * 0.10)) + valorConta) / quantidadePessoas).toFixed(2).replace(".", ",")
+        );
+    } else if (qualidade === 3 && servicoAdicional === true) {
+        alert("Valor da conta = R$ " + valorConta +
+            "\nCom 15% de gorjeta (Ótima) e 10% de serviço adicional: R$ " + (((valorConta * 0.15) + (valorConta * 0.10)) + valorConta).toFixed(2).replace(".", ",") +
+            "\nValor para cada pessoa: R$ " + ((((valorConta * 0.15) + (valorConta * 0.10)) + valorConta) / quantidadePessoas).toFixed(2).replace(".", ",")
+        );
+    } else if (qualidade === 1 && servicoAdicional === false) {
+        alert("Valor da conta = R$ " + valorConta +
+            "\nCom 5% de gorjeta (Ruim): R$ " + ((valorConta * 0.05) + valorConta).toFixed(2).replace(".", ",") +
+            "\nValor para cada pessoa: R$ " + (((valorConta * 0.05) + valorConta) / quantidadePessoas).toFixed(2).replace(".", ",")
+        );
+    } else if (qualidade === 2 && servicoAdicional === false) {
+        alert("Valor da conta = R$ " + valorConta +
+            "\nCom 10% de gorjeta (OK): R$ " + ((valorConta * 0.10) + valorConta).toFixed(2).replace(".", ",") +
+            "\nValor para cada pessoa: R$ " + (((valorConta * 0.10) + valorConta) / quantidadePessoas).toFixed(2).replace(".", ",")
+        );
+    } else if (qualidade === 3 && servicoAdicional === false) {
+        alert("Valor da conta = R$ " + valorConta +
+            "\nCom 15% de gorjeta (Ótima): R$ " + ((valorConta * 0.15) + valorConta).toFixed(2).replace(".", ",") +
+            "\nValor para cada pessoa: R$ " + (((valorConta * 0.15) + valorConta) / quantidadePessoas).toFixed(2).replace(".", ",")
+        );
+    }
+};
+
+function calcularFrete() {
+    let peso = parseFloat(prompt("Digite o peso do seu produto (Kg)."));
+
+    let valorPeso;
+
+    let distancia = parseFloat(prompt("Digite o peso do seu produto (Km)."));
+
+    let valorDistancia;
+
+    if (peso <= 2) {
+        valorPeso = 12;
+    } else if (peso <= 10) {
+        valorPeso = 25;
+    } else if (peso >= 11) {
+        valorPeso = 40;
+    }
+
+    if (distancia <= 100) {
+        valorDistancia = 0;
+    } else if (distancia >= 101 && distancia <= 499) {
+        valorDistancia = 15;
+    } else if (distancia >= 500) {
+        valorDistancia = 30;
+    }
+
+    if (peso <= 0) {
+        alert("Peso inválido");
+    } else if (peso <= 2 && distancia <= 100) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    } else if (peso <= 2 && distancia >= 101 && distancia <= 499) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    } else if (peso <= 2 && distancia >= 500) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    } else if (peso <= 10 && distancia <= 100) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    } else if (peso <= 10 && distancia >= 101 && distancia <= 499) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    } else if (peso <= 10 && distancia >= 500) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    } else if (peso >= 11 && distancia <= 100) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    } else if (peso >= 11 && distancia >= 101 && distancia <= 499) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    } else if (peso >= 11 && distancia >= 500) {
+        alert("Valor final: R$ " + (valorPeso + valorDistancia));
+    }
+};
+
+function verificarHorario() {
+    let diaSemana = parseInt(prompt("Digite o dia da semana (1 = dom, 2 = seg, 3 = ter, ..., 7 = sab)."));
+
+    let hora = parseInt(prompt("Digite o horario (0 - 23)."));
+
+    const feriado = confirm("Dia útil e feriado?");
+
+    if (diaSemana <= 0 || diaSemana >= 8) {
+        alert("Dia digitado inválido.");
+    } else if ( hora < 0 || hora >= 24) {
+        alert("Hora digitada inválida.");
+    } else if (diaSemana === 1) {
+        alert("Fechados ao domingo.");
+    } else if (diaSemana >= 2 || dia <= 6 && hora >= 9 || hora <= 18 && feriado === true) {
+        alert("Fechado por conta de feriado.");
+    } else if (diaSemana === 7 && hora >= 9 || hora <= 13 && feriado === true) {
+        alert("Fechado por conta de feriado.");
+    }
+  else if (diaSemana >= 2 || dia <= 6 && hora >= 9 || hora <= 18 && feriado === false) {
+        alert("Aberto de segunda a sexta entre 9 horas até as 18 horas.");
+    } else if (diaSemana === 7 && hora >= 9 || hora <= 13 && feriado === false) {
+        alert("Aberto de sábado entre 9 horas até as 13 horas.");
+    } 
 }
