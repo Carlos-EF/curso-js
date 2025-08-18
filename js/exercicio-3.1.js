@@ -115,8 +115,6 @@ function aplicarDesconto() {
 function validarEstacionamento() {
     let horas = parseFloat(prompt("Digite a quantidade de horas do estacionamento."));
 
-    // const pernoite = confirm("Pernoite?");
-
     if (0 > horas) {
         alert("As informações passadas são inconsistentes.");
     } else if (0 === horas) {
@@ -274,14 +272,22 @@ function liberarEmprestimo() {
     }
 };
 
-// function calcularGravidadeMulta() {
+function calcularGravidadeMulta() {
 
-//     let velocidade = parseInt(prompt("Digite a velocidade na qual você estava dirigindo."));
+    let velocidade = parseInt(prompt("Digite a velocidade na qual você estava dirigindo."));
 
-//     let limite = parseInt(prompt("Digite o limite da via."));
+    let limite = parseInt(prompt("Digite o limite da via."));
 
-//     let gravidade;
-// };
+    if (velocidade <= limite) {
+        alert("Dentro do limite.");
+    } else if (velocidade > limite && velocidade <= ((limite * 0.20) + limite)) {
+        alert("Infração leve.")
+    } else if (velocidade > ((limite * 0.20) + limite) && velocidade <= ((limite * 0.50) + limite)) {
+        alert("Infração grave.")
+    } else if (velocidade > ((limite * 0.50) + limite)) {
+        alert("Infração gravíssima.")
+    }
+};
 
 function serEducado() {
     let hora = parseFloat(prompt("Digite somente a hora atual."));
@@ -513,21 +519,21 @@ function jogarParTrincaSequencia() {
 }
 
 function calcularEstoque() {
-    // let quantidade = parseInt(prompt("Digite a quantidade no estoque."));
+    let quantidade = parseInt(prompt("Digite a quantidade no estoque."));
 
-    // let estoqueMinimo = parseInt(prompt("Digite a quantidade mínima no estoque."));
+    let estoqueMinimo = parseInt(prompt("Digite a quantidade mínima no estoque."));
 
-    // let calculoMinimo = (estoqueMinimo * 2);
+    let calculoMinimo = (estoqueMinimo * 2);
 
-    // if (quantidade <= 0) {
-    //     alert("Produto esgotado.")
-    // } else if (0 <= estoqueMinimo) {
-    //     alert("Crítica.");
-    // } else if (estoqueMinimo <= calculoMinimo) {
-    //     alert("Baixa.");
-    // } else if (quantidade >= calculoMinimo) {
-    //     alert("OK!");
-    // }
+    if (quantidade <= 0) {
+        alert("Produto esgotado.")
+    } else if (quantidade <= estoqueMinimo) {
+        alert("Crítica.");
+    } else if (quantidade > estoqueMinimo && quantidade <= calculoMinimo) {
+        alert("Baixa.");
+    } else if (quantidade >= calculoMinimo) {
+        alert("OK!");
+    }
 };
 
 function calcularContaRestaurante() {
@@ -633,18 +639,165 @@ function verificarHorario() {
 
     if (diaSemana <= 0 || diaSemana >= 8) {
         alert("Dia digitado inválido.");
-    } else if ( hora < 0 || hora >= 24) {
+    } else if (hora < 0 || hora >= 24) {
         alert("Hora digitada inválida.");
     } else if (diaSemana === 1) {
         alert("Fechados ao domingo.");
-    } else if (diaSemana >= 2 || dia <= 6 && hora >= 9 || hora <= 18 && feriado === true) {
+    } else if (diaSemana >= 2 && diaSemana <= 6 && hora >= 9 && hora <= 18 && feriado === true) {
         alert("Fechado por conta de feriado.");
-    } else if (diaSemana === 7 && hora >= 9 || hora <= 13 && feriado === true) {
-        alert("Fechado por conta de feriado.");
-    }
-  else if (diaSemana >= 2 || dia <= 6 && hora >= 9 || hora <= 18 && feriado === false) {
+    } else if (diaSemana >= 2 && diaSemana <= 6 && hora >= 9 && hora <= 18 && feriado === false) {
         alert("Aberto de segunda a sexta entre 9 horas até as 18 horas.");
-    } else if (diaSemana === 7 && hora >= 9 || hora <= 13 && feriado === false) {
+    } else if (diaSemana === 7 && hora >= 9 && hora <= 13 && feriado === true) {
+        alert("Fechado por conta de feriado.");
+    } else if (diaSemana === 7 && hora >= 9 && hora <= 13 && feriado === false) {
         alert("Aberto de sábado entre 9 horas até as 13 horas.");
-    } 
-}
+    } else {
+        alert("Fechado.");
+    }
+};
+
+function verificarNotas() {
+    let nota1 = parseFloat(prompt("Digite a primeira nota."));
+
+    let nota2 = parseFloat(prompt("Digite a segunda nota."));
+
+    let nota3 = parseFloat(prompt("Digite a terceira nota."));
+
+    let nota4 = parseFloat(prompt("Digite a quarta nota."));
+
+    let media = (nota1 + nota2 + nota3 + nota4) / 4;
+
+    if (nota1 < 0 || nota2 < 0 || nota3 < 0 || nota4 < 0) {
+        alert("Uma das notas digitadas é inválida.");
+    } else if (nota1 > 10 || nota2 > 10 || nota3 > 10 || nota4 > 10) {
+        alert("Uma das notas digitadas é inválida.");
+    } else if (media >= 7) {
+        alert("Media do aluno: " + media.toFixed(1) +
+            "\nAluno aprovado.");
+    } else if (media >= 5 && media <= 6.9) {
+        alert("Media do aluno: " + media.toFixed(1) +
+            "\nAluno em recuperação.");
+    } else if (media < 5) {
+        alert("Media do aluno: " + media.toFixed(1) +
+            "\nAluno reprovado.");
+    }
+};
+
+function confirmarLogin() {
+    let perfil = parseInt(prompt("Digite o nível do seu perfil. (1 = usuário, 2 = gestor ou 3 = admin)."));
+
+    let senha = parseInt(prompt("Digite a sua senha."));
+
+    if (perfil <= 0) {
+        alert("Tipo de perfil inexistente.");
+    } else if (perfil > 3) {
+        alert("Tipo de perfil inexistente.");
+    } else if (perfil === 1) {
+        alert("Acesso para usuário liberado.")
+    } else if (perfil === 2 && senha % 2 === 0) {
+        alert("Acesso para gestor liberado.")
+    } else if (perfil === 2 && senha % 2 === 1) {
+        alert("Acesso para gestor negado." +
+            "\nMotivo: chave de acesso não é par.")
+    } else if (perfil === 3 && senha % 5 === 0 && senha > 100) {
+        alert("Acesso para admin liberado."
+        )
+    } else if (perfil === 3 && senha < 100) {
+        alert("Acesso para admin negado. " +
+            "\nMotivo: chave de acesso não é maior que 100.")
+    } else if (perfil === 3 && senha % 5 === 1 && senha < 100) {
+        alert("Acesso para admin negado. " +
+            "\nMotivo: não é multiplo de 5;" +
+            "\nChave de acesso não é maior que 100.")
+    } else if (perfil === 3 && senha % 5 === 1) {
+        alert("Acesso para admin negado. " +
+            "\nMotivo: não é multiplo de 5."
+        )
+    }
+};
+
+function calcularEtanolGasolina() {
+    let precoEtanol = parseFloat(prompt("Digite o valor do etanol."));
+
+    let precoGasolina = parseFloat(prompt("Digite o valor da gasolina."));
+
+    if (precoEtanol < 0) {
+        alert("Preço do etanol negativo.")
+    } else if (precoGasolina < 0) {
+        alert("Preço da gasolina negativo.")
+    } else if (precoEtanol <= precoGasolina * 0.7) {
+        alert("Etanol compensa mais neste caso pois está mais barato do que gasolina.");
+    } else if (precoEtanol > precoGasolina * 0.7) {
+        alert("Gasolina compensa mais neste caso pois está mais barato do que etanol.")
+    }
+};
+
+function confirmarSenha() {
+    let senha = prompt("Digite sua senha.").trim();
+
+    let confirmarSenha = prompt("Confirme sua senha.").trim();
+
+    if (senha === "") {
+        alert("Senha digitada está vazia.");
+    } else if (confirmarSenha === "") {
+        alert("Confirmação de senha digitada está vazia.")
+    } else if (senha.length < 6) {
+        alert("Senha muito fraca.( tem que ter no mínimo 6 caractéres).");
+    } else if (senha !== confirmarSenha) {
+        alert("Senhas não coincidem.");
+    } else if (senha === confirmarSenha) {
+        alert("Senha cadastrada com sucesso!");
+    }
+};
+
+function classificarTemperatura() {
+    let temperatura = parseFloat(prompt("Digite a temperatura em °C."));
+
+    if (temperatura < 0) {
+        alert("Você esta congelando, não está?");
+    } else if (temperatura >= 0 && temperatura <= 14) {
+        alert("Esta um pouco frio aí.");
+    } else if (temperatura >= 15 && temperatura <= 25) {
+        alert("Clima bem agradável.")
+    } else if (temperatura >= 26 && temperatura <= 35) {
+        alert("Esta um pouco quente aí.")
+    } else if (temperatura > 35) {
+        alert("Amostra grátis do inferno.")
+    }
+};
+
+function validarHoraProva() {
+    let horaEntrada = parseInt(prompt("Digite a hora de entrada para a prova (0-23)."));
+
+    let tempoProva = parseInt(prompt("Digite o tempo de prova (min)."));
+
+    if (horaEntrada < 0 || horaEntrada > 24) {
+        alert("Hora digitada inválida.");
+    } else if (tempoProva < 0) {
+        alert("Tempo digitado inválido.");
+    } else if (horaEntrada === 10 && tempoProva <= 120) {
+        alert("Entrada permitida no limite do tempo.");
+    } else if (horaEntrada >= 8 && horaEntrada <= 10) {
+        alert("Entrada permitida.");
+    } else {
+        alert("Entrada negada.");
+    }
+};
+
+function validarSeguro() {
+    let idade = parseInt(prompt("Digite sua idade."));
+
+    let anosCnh = parseInt(prompt("Digite quantos anos tem de CNH."));
+
+    const pontos = confirm("Possui pontos na carteira dentro de 12 meses?");
+
+    let valorSeguro = 1500;
+    if (idade >= 21 && anosCnh >= 2 && pontos === false) {
+        alert("Você é elegível ao seguro! Valor base: R$ " + valorSeguro);
+    } else if (idade < 25 || anosCnh < 3 && pontos === false) {
+        alert("Você é elegível ao seguro! Valor base: R$ " + valorSeguro +
+            "\nPor conta de certos critérios, o valor ajustado para sua condição sera de: R$ " + ((valorSeguro * 0.20) + valorSeguro))
+    } else {
+        alert("Desculpa, porém você não é elegível ao seguro.")
+    }
+};
