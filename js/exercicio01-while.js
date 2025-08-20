@@ -140,6 +140,107 @@ function mostrarNomes() {
         nomes = nomes + "\n" + nome;
     }
 
-    alert("Nomes digitados: " + nomes + 
+    alert("Nomes digitados: " + nomes +
         "\nQuantidade de nomes: " + quantidadeNomes)
+}
+
+function somarValoresReais() {
+    // Massa de dados: R$ 3,50 | 10 | R$ 7,99 | 8,5
+
+    let soma = 0;
+
+    let mediaValor = 0;
+
+    indice = 0;
+
+    while (indice < 4) {
+        let valor = parseFloat(prompt("Digite um valor em R$.").trim().replace(",", ".").replace("R$", ""));
+
+        indice = indice + 1;
+
+        soma = soma + valor;
+
+        mediaValor = soma / 4;
+    }
+
+    alert("Soma dos valores: " + soma.toFixed(2) +
+        "\nMedia dos valores: " + mediaValor.toFixed(2)
+    )
+}
+
+function contarPerguntas() {
+    let indice = 0;
+
+    let perguntasContadas = 0;
+
+    let naoPerguntas = 0;
+    while (indice < 5) {
+        let perguntas = prompt("Escreva sua duvida aqui.").trimEnd().toLowerCase();
+
+        indice = indice + 1;
+
+        if (perguntas.endsWith("?")) {
+            perguntasContadas = perguntasContadas + 1;
+        } else {
+            naoPerguntas = naoPerguntas + 1;
+        }
+    }
+
+    alert("Quantidade de perguntas: " + perguntasContadas + ";" +
+        "\nQuantidade de não perguntas: " + naoPerguntas + "."
+    )
+}
+
+function contarCupons() {
+    // Massa de dados: VIP123, testeOFF, vip-2025, abc, winterOff
+
+    let cuponVip = 0;
+
+    let cuponOff = 0;
+
+    let indice = 0;
+
+    while (indice < 5) {
+        let temCupom = prompt("Digite o cupom.").toLowerCase().trim();
+
+        indice = indice + 1;
+
+        if (temCupom.startsWith("vip")) {
+            cuponVip = cuponVip + 1;
+        } else if (temCupom.endsWith("off")) {
+            cuponOff = cuponOff + 1;
+        }
+    }
+
+    alert("Total de cupom: VIP = " + cuponVip + ";" +
+        "\nTotal de cupom: OFF = " + cuponOff + "."
+    )
+}
+
+function mostrarApenasPrimeiroNome() {
+    let primeirosNomes = "";
+
+    let tresPrimeirasLetras = "";
+
+    let indice = 0;
+
+    while(indice < 3) {
+        let nomeCompleto = prompt("Digite seu nome completo.");
+
+        indice = indice + 1;
+
+        let partesNomes = nomeCompleto.trim().split(" ");
+
+        let nome1 = partesNomes[0];
+
+        let tresLetras = nomeCompleto.trim().substring(0, 3);
+
+        primeirosNomes = primeirosNomes + "\n" + nome1;
+
+        tresPrimeirasLetras = tresPrimeirasLetras + "\n" + tresLetras;
+    }
+
+    alert("Primeiro nome: " + primeirosNomes + ";" +
+        "\nPrimeiras três letras: " + tresPrimeirasLetras + ";"
+    )
 }
