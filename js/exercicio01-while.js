@@ -56,22 +56,24 @@ function validarIdade() {
     let idade = parseInt(prompt("Digite sua idade."));
 
     while (idade < 1 || idade > 120) {
-        idade = parseInt("Sua idade tem que ser maior que 1 ou menor que 120. \nDigite sua idade novamente.");
+        idade = parseInt(prompt("Sua idade tem que ser maior que um e menor que 120" +
+            "\nDigite sua idade novamente."
+        ));
     }
-
     alert("Idade cadastrada: " + idade)
 }
 
 function obterMaiorAltura() {
     // Massa de dados: 1,72 | 1,80 | 1,75
+    let altura = 0;
 
     let MaiorAltura = 0;
 
     let indice = 0;
 
     while (indice < 3) {
-        altura = parseFloat(prompt("Digite sua altura.")).replace(",", ".");
-        
+        altura = parseFloat(prompt("Digite sua altura.").replace(",", "."));
+
         if (altura > MaiorAltura) {
             MaiorAltura = altura
         }
@@ -80,4 +82,64 @@ function obterMaiorAltura() {
     }
 
     alert("Maior altura entre os digitados: " + MaiorAltura.toFixed(2))
+}
+
+function abrirMiniMenu() {
+    let menu = `Sistema: 
+    1 - Saudação
+    2 - Par ou ímpar
+    100 - Sair`;
+
+    let opcaoEscolhida = 0;
+    while (opcaoEscolhida !== 100) {
+        opcaoEscolhida = parseInt(prompt(menu));
+
+        if (opcaoEscolhida === 1) {
+            opcao1MiniMenu();
+        } else if (opcaoEscolhida === 2) {
+            opcao2MiniMenu();
+        } else if (opcaoEscolhida !== 100) {
+            alert("Opção inválida.")
+        } else if (opcaoEscolhida === 100) {
+            alert("Sistema encerrado.")
+        }
+    }
+};
+
+function opcao1MiniMenu() {
+    let nome = prompt("Digite seu nome aqui.").trim();
+
+    alert("Olá, " + nome + ".");
+    return nome;
+};
+
+function opcao2MiniMenu() {
+    let numero = parseFloat(prompt("Digite um número aqui.").replace(",", "."));
+
+    if (numero % 2 === 0) {
+        alert("O número " + numero + " é par.");
+    } else if (numero % 2 === 1) {
+        alert("O número " + numero + " é ímpar.");
+    }
+
+    return numero;
+};
+
+function mostrarNomes() {
+    let quantidadeNomes = 0;
+
+    let nomes = "";
+
+    let nome = "";
+
+    while (nome.trim().toLowerCase() !== "fim") {
+        nome = prompt("Digite um nome.");
+
+        quantidadeNomes = quantidadeNomes + 1;
+
+        nomes = nomes + "\n" + nome;
+    }
+
+    alert("Nomes digitados: " + nomes + 
+        "\nQuantidade de nomes: " + quantidadeNomes)
 }

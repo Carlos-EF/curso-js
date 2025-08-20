@@ -1,20 +1,20 @@
-//escopo da variável saldo é global
+// escopo da variável saldo é global
 let saldo = 2000.00;
 
-function sacar(){
-    //escopo da variável valorSaque é a função sacar
+function sacar() {
+    // escopo da variável valorSaque é a função sacar
     const valorSaque = parseFloat(
         prompt("Digite o valor do saque", "R$ ")
-        .replace(",", ".")
-        .replace("R$", "")
-        .replaceAll(" ", "")
+            .replace(",", ".")
+            .replace("R$", "")
+            .replaceAll(" ", "")
     );
 
-    if(valorSaque > saldo) {
+    if (valorSaque > saldo) {
         alert("Saldo insuficiente");
     } else {
         const confirmacao = confirm("Deseja realmente realizar o saque?");
-        if(confirmacao === true) {
+        if (confirmacao === true) {
             saldo = saldo - valorSaque;
             apresentarSaldo();
         }
@@ -27,10 +27,10 @@ function apresentarSaldo() {
 
 function depositar() {
     const valorDeposito = parseFloat(
-        prompt("Digite o valor do depósito", "R$")
-        .replace(",", ".")
-        .replace("R$", "")
-        .replaceAll(" ", "")
+        prompt("Digite o valor do depósito", "R$ ")
+            .replace(",", ".")
+            .replace("R$", "")
+            .replaceAll(" ", "")
     );
 
     if (valorDeposito <= 0) {
