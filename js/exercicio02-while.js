@@ -1,9 +1,12 @@
 // function apresentarSistemaCompra() {
 //     // Batata Palha | R$ 12,50 · Arroz 5kg | 29,90 · Leite | R$ 4,79
+
 // }
 
 function validarCsv() {
     let indice = 0;
+
+    let gravarCsv = "";
 
     let statusId;
 
@@ -27,6 +30,8 @@ function validarCsv() {
         let csv = prompt("Digite o csv no formato: 'id;nome;cpf;aaaa-mm-dd' .");
 
         indice = indice + 1;
+
+        gravarCsv = gravarCsv + csv + "\n";
 
         let partesCsv = csv.split(";");
 
@@ -69,9 +74,10 @@ function validarCsv() {
         cpfStatus = cpfStatus + "\n" + statusCpf;
 
         dataStatus = dataStatus + "\n" + statusData;
-
     }
-    console.log(idStatus +
+
+    console.log("CSV digitado: " + gravarCsv + 
+        "\n" + idStatus +
         "\n" + nomeStatus +
         "\n" + cpfStatus +
         "\n" + dataStatus
@@ -231,26 +237,24 @@ function normalizarNumerosTelefone() {
 //     while (cadastrarEmail !== "fim") {
 //         cadastrarEmail = prompt("Digite seu email aqui. Caso queira parar digite: 'fim' .").toLowerCase().trim();
 
-//         const partesEmail = cadastrarEmail.split("@");
+//         if (cadastrarEmail.includes("@")) {
+//             let partesEmail = cadastrarEmail.split("@");
 
-//         const validarEmail = ["@", "."];
+//             if (partesEmail.length === 2 && partesEmail[1].includes(".")) {
+//                 let dominioEmail = partesEmail[1];
 
-//         if (cadastrarEmail.includes(validarEmail) === false) {
-//             quantidadeInvalida = quantidadeInvalida + 1;
-//         }
-
-//         let emailDigitado = partesEmail[0];
-
-//         let dominioEmail = partesEmail[1];
-
-//         if (dominioEmail === "gmail.com") {
-//             quantidadeGmail = quantidadeGmail + 1;
-//         } else if (dominioEmail === "outlook.com") {
-//             quantidadeOutlook = quantidadeOutlook + 1;
-//         } else if (dominioEmail === "yahoo.com") {
-//             quantidadeYahoo = quantidadeYahoo + 1;
-//         } else {
-//             quantidadeOutros = quantidadeOutros + 1;
+//                 if (dominioEmail === "gmail.com") {
+//                     quantidadeGmail = quantidadeGmail + 1;
+//                 } else if (dominioEmail === "outlook.com") {
+//                     quantidadeOutlook = quantidadeOutlook + 1;
+//                 } else if (dominioEmail === "yahoo.com") {
+//                     quantidadeYahoo = quantidadeYahoo + 1;
+//                 } else if (dominioEmail !== "gmail.com" && dominioEmail !== "outlook.com" && dominioEmail !== "yahoo.com") {
+//                     quantidadeOutros = quantidadeOutros + 1;
+//                 } else {
+//                     quantidadeInvalida = quantidadeInvalida + 1;
+//                 }
+//             }
 //         }
 
 //         if (cadastrarEmail === "fim") {
@@ -264,7 +268,6 @@ function normalizarNumerosTelefone() {
 //             )
 //         }
 //     }
-
 // }
 
 function descobrirTamanhoFrase() {
@@ -355,6 +358,95 @@ function classificarHorario() {
         "\nQuantidade de horários da manhã: " + horaManha + ";" +
         "\nQuantidade de horários da tarde: " + horaTarde + ";" +
         "\nQuantidade de horários da noite: " + horaNoite + ";" +
-        "\nQuantidade de horários inválidos: " + horaInvalida + "." 
+        "\nQuantidade de horários inválidos: " + horaInvalida + "."
     )
-}
+};
+
+function validarCodigo() {
+    // Massa de dados: BLU-2024-7, BLU-2025-042, SP-2025-0010, BLU-1999-0001, BLU-2025-1234
+    let indice = 0;
+
+    let codigoInvalido = 0;
+
+    let mostrarCodigo = "";
+
+    while (indice < 5) {
+        indice = indice + 1;
+
+        let codigo = prompt("Digite o código promocional. (Padrão: 'BLU-ano-números') ").trim();
+
+        let partesCodigo = codigo.split("-");
+
+        let prefixo = codigo.substring(0, 3);
+
+        let ano = codigo.substring(4, 8);
+
+        // let anoCorrigido = parseInt(ano);
+
+        let numeros = codigo.substring(9, 13);
+
+        let numerosCorrigido;
+
+        if (numeros.length < 4) {
+            numerosCorrigido = numeros.padStart(4, "0");
+        } else {
+            numerosCorrigido = numeros;
+        };
+
+        let codigoCorrigido = prefixo + "-" + ano + "-" + numerosCorrigido;
+
+        if (prefixo !== "BLU" || parseInt(ano) < 2000 || ano.length < 4) {
+            codigoInvalido = codigoInvalido + 1;
+        } else {
+            mostrarCodigo = mostrarCodigo + codigoCorrigido + ";" + "\n";
+        };
+    };
+
+    console.log("Códigos corrigidos: " + mostrarCodigo +
+        "\nQuantidade de códigos inválidos: " + codigoInvalido + ";"
+    );
+};
+
+// function criarUsernameId() {
+//     // Massa de dados: Ana Maria Souza, João Pedro Lima, MARIA das DORES
+//     let indice = 0;
+
+//     let idMostrado = "";
+
+//     id = 0;
+
+//     let username = "";
+
+//     let tabela;
+
+//     let separarTabela = "-";
+
+//     while (indice < 3) {
+//         let nomeCompleto = prompt("Digite seu nome completo.").trim().toLowerCase();
+
+//         indice = indice + 1;
+
+//         if (id < 999999) {
+//             id = id + 1;
+//             idMostrado = idMostrado + id + "\n";
+//         } else if (idMostrado.length < 999999999999) {
+//             idMostrado = idMostrado.padStart(6, "0");
+//         }
+
+//         let partesNomes = nomeCompleto.split(" ");
+
+//         let ultimoNome = partesNomes[partesNomes.length - 1];
+
+//         let primeiraLetra = nomeCompleto.substring(0, 1);
+
+//         tabela = "Username".padEnd(15, " ") + " ID\n" + separarTabela + "\n";
+
+//         separarTabela = separarTabela.padEnd(30, "-");
+
+//         username = username + primeiraLetra + ultimoNome + "\n";
+
+//         tabela = tabela + username.padEnd(15, " ") + idMostrado;
+//     }
+
+//     console.log(tabela)
+// }
