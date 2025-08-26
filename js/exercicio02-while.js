@@ -1,28 +1,65 @@
 // function apresentarSistemaCompra() {
 //     // Batata Palha | R$ 12,50 · Arroz 5kg | 29,90 · Leite | R$ 4,79
+//     let desejaCadastrar = "sim";
 
-// }
+//     let resultado = "Produto              Preço\n";
+
+//     let media = 0;
+
+//     let total = 0;
+
+//     let guardarPreco = "";
+
+//     while (desejaCadastrar === "sim") {
+//         debugger
+//         let produto = prompt("Digite o nome do produto.").trim();
+
+//         while (produto.length < 2) {
+//             produto = prompt("Nome do produto inválido. Digite novamente. (Nome tem que ser maior ou igual a 2).").trim();
+//         };
+
+//         const guardarProdutos = produto;
+
+//         let valorProduto = prompt("Digite o valor do produto. Ex.: 'R$ 1.299,90' ");
+
+//         let valorProdutoLimpo = valorProduto.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
+
+//         let preco = parseFloat(valorProdutoLimpo).toFixed(2);
+
+//         desejaCadastrar = prompt("Deseja cadastrar outro produto? (sim/não)").toLowerCase().trim();
+
+//         guardarPreco = guardarPreco + preco;
+
+//         total = total + parseFloat(guardarPreco);
+
+//         resultado += `${guardarProdutos.padEnd(20, " ")} ${preco}\n`
+//     }
+
+//     console.log(resultado + total);
+// };
 
 function validarCsv() {
     let indice = 0;
 
-    let gravarCsv = "";
+    let quantidadeValida = 0;
 
-    let statusId;
+    let quantidadeInvalida = 0;
 
-    let idStatus = "";
+    let idValida = 0;
 
-    let statusNome;
+    let idInvalida = 0;
 
-    let nomeStatus = "";
+    let nomeValido = 0;
 
-    let statusCpf;
+    let nomeInvalido = 0;
 
-    let cpfStatus = "";
+    let cpfValido = 0;
 
-    let statusData;
+    let cpfInvalido = 0;
 
-    let dataStatus = "";
+    let dataValida = 0;
+
+    let dataInvalida = 0;
 
     while (indice < 5) {
         //0;Carlos;123.123.123-1;2025-0820
@@ -31,11 +68,9 @@ function validarCsv() {
 
         indice = indice + 1;
 
-        gravarCsv = gravarCsv + csv + "\n";
-
         let partesCsv = csv.split(";");
 
-        let id = parseInt(partesCsv[0].padStart(2, 0));
+        let id = partesCsv[0].padStart(2, 0).replace(/\d/g, "");
 
         let nome = partesCsv[1].trim();
 
@@ -43,44 +78,44 @@ function validarCsv() {
 
         let data = partesCsv[3];
 
+        if (id > 0 && nome.length >= 7 && cpf.length === 14 && cpf.charAt(3) === "." && cpf.charAt(7) === "." && cpf.charAt(11) === "-" && data.length === 10 && data.charAt(4) === "-" && data.charAt(7) === "-") {
+            quantidadeValida = quantidadeValida + 1;
+        } else {
+            quantidadeInvalida = quantidadeInvalida + 1;
+        }
+
         if (id <= 0) {
-            statusId = "ID inválido."
+            idInvalida = idInvalida + 1;
         } else if (id > 0) {
-            statusId = "ID válido."
+            idValida = idValida + 1;
         }
 
         if (nome.length >= 7) {
-            statusNome = "Nome válido."
+            nomeValido = nomeValido + 1;
         } else {
-            statusNome = "Nome inválido."
+            nomeInvalido = nomeInvalido + 1;
         }
 
         if (cpf.length === 14 && cpf.charAt(3) === "." && cpf.charAt(7) === "." && cpf.charAt(11) === "-") {
-            statusCpf = "CPF válido."
+            cpfValido = cpfValido + 1;
         } else {
-            statusCpf = "CPF inválido."
+            cpfInvalido = cpfInvalido + 1;
         }
 
         if (data.length === 10 && data.charAt(4) === "-" && data.charAt(7) === "-") {
-            statusData = "Data válida."
+            dataValida = dataValida + 1;
+
         } else {
-            statusData = "Data inválida."
+            dataInvalida = dataInvalida + 1;
         }
-
-        idStatus = idStatus + "\n" + statusId;
-
-        nomeStatus = nomeStatus + "\n" + statusNome;
-
-        cpfStatus = cpfStatus + "\n" + statusCpf;
-
-        dataStatus = dataStatus + "\n" + statusData;
     }
 
-    console.log("CSV digitado: " + gravarCsv + 
-        "\n" + idStatus +
-        "\n" + nomeStatus +
-        "\n" + cpfStatus +
-        "\n" + dataStatus
+    console.log("Quantidade válidas: " + quantidadeValida +
+        "\nQuantidade inválidas: " + quantidadeInvalida +
+        "\nQuantidade de ID inválidos: " + idInvalida +
+        "\nQuantidade de nome inválidos: " + nomeInvalido +
+        "\nQuantidade de CPF inválidos " + cpfInvalido +
+        "\nQuantidade de data inválidas: " + dataInvalida
     );
 };
 
@@ -219,56 +254,58 @@ function normalizarNumerosTelefone() {
     )
 };
 
-// function validarEmailDominio() {
-//     // Ana@Gmail.com joao@outlook.com maria@yahoo.com x@empresa.com.br errado@@mail
+function validarEmailDominio() {
+    // Ana@Gmail.com joao@outlook.com maria@yahoo.com x@empresa.com.br errado@@mail
 
-//     let cadastrarEmail = "";
+    let cadastrarEmail = "";
 
-//     let quantidadeGmail = 0;
+    let quantidadeGmail = 0;
 
-//     let quantidadeOutlook = 0;
+    let quantidadeOutlook = 0;
 
-//     let quantidadeYahoo = 0;
+    let quantidadeYahoo = 0;
 
-//     let quantidadeOutros = 0;
+    let quantidadeOutros = 0;
 
-//     let quantidadeInvalida = 0;
+    let quantidadeInvalida = 0;
 
-//     while (cadastrarEmail !== "fim") {
-//         cadastrarEmail = prompt("Digite seu email aqui. Caso queira parar digite: 'fim' .").toLowerCase().trim();
+    while (cadastrarEmail !== "fim") {
+        cadastrarEmail = prompt("Digite seu email aqui. Caso queira parar digite: 'fim' .").toLowerCase().trim();
 
-//         if (cadastrarEmail.includes("@")) {
-//             let partesEmail = cadastrarEmail.split("@");
+        if (cadastrarEmail.includes("@")) {
+            let partesEmail = cadastrarEmail.split("@");
 
-//             if (partesEmail.length === 2 && partesEmail[1].includes(".")) {
-//                 let dominioEmail = partesEmail[1];
+            let dominioEmail;
 
-//                 if (dominioEmail === "gmail.com") {
-//                     quantidadeGmail = quantidadeGmail + 1;
-//                 } else if (dominioEmail === "outlook.com") {
-//                     quantidadeOutlook = quantidadeOutlook + 1;
-//                 } else if (dominioEmail === "yahoo.com") {
-//                     quantidadeYahoo = quantidadeYahoo + 1;
-//                 } else if (dominioEmail !== "gmail.com" && dominioEmail !== "outlook.com" && dominioEmail !== "yahoo.com") {
-//                     quantidadeOutros = quantidadeOutros + 1;
-//                 } else {
-//                     quantidadeInvalida = quantidadeInvalida + 1;
-//                 }
-//             }
-//         }
+            if (partesEmail.length === 2 && partesEmail[1].includes(".")) {
+                dominioEmail = partesEmail[1];
+            } else {
+                quantidadeInvalida = quantidadeInvalida + 1;
+            }
 
-//         if (cadastrarEmail === "fim") {
-//             quantidadeOutros = quantidadeOutros - 1;
+            if (dominioEmail === "gmail.com") {
+                quantidadeGmail = quantidadeGmail + 1;
+            } else if (dominioEmail === "outlook.com") {
+                quantidadeOutlook = quantidadeOutlook + 1;
+            } else if (dominioEmail === "yahoo.com") {
+                quantidadeYahoo = quantidadeYahoo + 1;
+            } else if (dominioEmail !== "gmail.com" || dominioEmail !== "outlook.com" || dominioEmail !== "yahoo.com") {
+                quantidadeOutros = quantidadeOutros + 1;
+            }
+        }
 
-//             alert("Quantidade de gmails: " + quantidadeGmail + ";" +
-//                 "\nQuantidade de outlooks: " + quantidadeOutlook + ";" +
-//                 "\nQuantidade de yahoos: " + quantidadeYahoo + ";" +
-//                 "\nQuantidade de outros emails: " + quantidadeOutros + ";" +
-//                 "\n\nQuantidade inválidas: " + quantidadeInvalida + "."
-//             )
-//         }
-//     }
-// }
+        if (cadastrarEmail === "fim") {
+            quantidadeOutros = quantidadeOutros - 1;
+
+            alert("Quantidade de gmails: " + quantidadeGmail + ";" +
+                "\nQuantidade de outlooks: " + quantidadeOutlook + ";" +
+                "\nQuantidade de yahoos: " + quantidadeYahoo + ";" +
+                "\nQuantidade de outros emails: " + quantidadeOutros + ";" +
+                "\n\nQuantidade inválidas: " + quantidadeInvalida + "."
+            )
+        }
+    }
+}
 
 function descobrirTamanhoFrase() {
     let indice = 0;
@@ -407,46 +444,31 @@ function validarCodigo() {
     );
 };
 
-// function criarUsernameId() {
-//     // Massa de dados: Ana Maria Souza, João Pedro Lima, MARIA das DORES
-//     let indice = 0;
+function criarUsernameId() {
+    // Massa de dados: Ana Maria Souza, João Pedro Lima, MARIA das DORES
+    let indice = 0;
 
-//     let idMostrado = "";
+    let id = 0;
 
-//     id = 0;
+    let resultado = "Username                ID\n"
 
-//     let username = "";
+    while (indice < 3) {
+        let nomeCompleto = prompt("Digite seu nome completo.").trim().toLowerCase();
 
-//     let tabela;
+        indice = indice + 1;
 
-//     let separarTabela = "-";
+        id = id + 1;
 
-//     while (indice < 3) {
-//         let nomeCompleto = prompt("Digite seu nome completo.").trim().toLowerCase();
+        const partesNomes = nomeCompleto.split(" ");
 
-//         indice = indice + 1;
+        const ultimoNome = partesNomes[partesNomes.length - 1];
 
-//         if (id < 999999) {
-//             id = id + 1;
-//             idMostrado = idMostrado + id + "\n";
-//         } else if (idMostrado.length < 999999999999) {
-//             idMostrado = idMostrado.padStart(6, "0");
-//         }
+        const primeiraLetra = nomeCompleto.substring(0, 1);
 
-//         let partesNomes = nomeCompleto.split(" ");
+        const username = primeiraLetra + ultimoNome;
 
-//         let ultimoNome = partesNomes[partesNomes.length - 1];
+        resultado += `${username.padEnd(15, " ")} ${id}\n`;
+    }
 
-//         let primeiraLetra = nomeCompleto.substring(0, 1);
-
-//         tabela = "Username".padEnd(15, " ") + " ID\n" + separarTabela + "\n";
-
-//         separarTabela = separarTabela.padEnd(30, "-");
-
-//         username = username + primeiraLetra + ultimoNome + "\n";
-
-//         tabela = tabela + username.padEnd(15, " ") + idMostrado;
-//     }
-
-//     console.log(tabela)
-// }
+    console.log(resultado)
+};
