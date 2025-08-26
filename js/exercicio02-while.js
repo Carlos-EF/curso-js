@@ -1,42 +1,53 @@
-// function apresentarSistemaCompra() {
-//     // Batata Palha | R$ 12,50 · Arroz 5kg | 29,90 · Leite | R$ 4,79
-//     let desejaCadastrar = "sim";
+function apresentarSistemaCompra() {
+    // Batata Palha | R$ 12,50 · Arroz 5kg | 29,90 · Leite | R$ 4,79
+    let desejaCadastrar = "sim";
 
-//     let resultado = "Produto              Preço\n";
+    let separarTabela = "-".padEnd(30, "-");
 
-//     let media = 0;
+    let resultado = "Produto              Preço\n" + separarTabela + "\n";
 
-//     let total = 0;
+    let total = 0;
 
-//     let guardarPreco = "";
+    let produtos = 0;
 
-//     while (desejaCadastrar === "sim") {
-//         debugger
-//         let produto = prompt("Digite o nome do produto.").trim();
+    let guardarPreco = "";
 
-//         while (produto.length < 2) {
-//             produto = prompt("Nome do produto inválido. Digite novamente. (Nome tem que ser maior ou igual a 2).").trim();
-//         };
+    let guardarProduto = "";
 
-//         const guardarProdutos = produto;
+    let mediaFinal = 0;
 
-//         let valorProduto = prompt("Digite o valor do produto. Ex.: 'R$ 1.299,90' ");
+    let maiorValor = 0;
 
-//         let valorProdutoLimpo = valorProduto.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
+    while (desejaCadastrar === "sim") {
+        produtos = produtos + 1;
 
-//         let preco = parseFloat(valorProdutoLimpo).toFixed(2);
+        let produto = prompt("Digite o nome do produto.").trim();
 
-//         desejaCadastrar = prompt("Deseja cadastrar outro produto? (sim/não)").toLowerCase().trim();
+        while (produto.length < 2) {
+            produto = prompt("Nome digitado inválido. Precisa ser maior ou igual a dois caractéres.").trim();
+        }
 
-//         guardarPreco = guardarPreco + preco;
+        let preco = parseFloat(prompt("Digite o valor do produto. Ex.: 'R$ 1.299,90' ").replace("R$", "").replace(",", ".").replaceAll(" ", "").trim());
 
-//         total = total + parseFloat(guardarPreco);
+        if (preco > maiorValor) {
+            maiorValor = preco;
+            guardarPreco = maiorValor;
+            guardarProduto = produto;
+        }
 
-//         resultado += `${guardarProdutos.padEnd(20, " ")} ${preco}\n`
-//     }
+        total = total + preco;
 
-//     console.log(resultado + total);
-// };
+        desejaCadastrar = prompt("Deseja cadastrar mais um produto? (Sim/não)").toLowerCase().trim();
+
+        if (desejaCadastrar !== "sim") {
+            mediaFinal = total / produtos;
+        }
+
+        resultado += `${produto.padEnd(20, " ")} ${preco.toFixed(2)}\n`
+    }
+
+    console.log(resultado + separarTabela + "\nTotal:".padEnd(22, " ") + total.toFixed(2) + "\n" + separarTabela + "\nMedia:".padEnd(22, " ") + mediaFinal.toFixed(2)+ "\n" + separarTabela + "\nQuantidade:".padEnd(22, " ") + produtos + "\nNome maior preço:".padEnd(22, " ") + guardarProduto + "\nMaior preço:".padEnd(22, " ") + guardarPreco);
+};
 
 function validarCsv() {
     let indice = 0;
@@ -418,8 +429,6 @@ function validarCodigo() {
 
         let ano = codigo.substring(4, 8);
 
-        // let anoCorrigido = parseInt(ano);
-
         let numeros = codigo.substring(9, 13);
 
         let numerosCorrigido;
@@ -450,7 +459,7 @@ function criarUsernameId() {
 
     let id = 0;
 
-    let resultado = "Username                ID\n"
+    let resultado = "Username        ID\n"
 
     while (indice < 3) {
         let nomeCompleto = prompt("Digite seu nome completo.").trim().toLowerCase();
@@ -467,7 +476,7 @@ function criarUsernameId() {
 
         const username = primeiraLetra + ultimoNome;
 
-        resultado += `${username.padEnd(15, " ")} ${id}\n`;
+        resultado += `${username.padEnd(15, " ")} ${id.toString().padStart(6, "0")}\n`;
     }
 
     console.log(resultado)
