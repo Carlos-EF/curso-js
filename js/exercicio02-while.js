@@ -481,3 +481,129 @@ function criarUsernameId() {
 
     console.log(resultado)
 };
+
+function cadastrarTimeFutebol() {
+    let indice = 0;
+
+    let menorPeso = 999999999999;
+
+    let menorPesoNome;
+
+    let maiorPeso = 0;
+
+    let maiorPesoNome;
+
+    let maiorAltura = 0;
+
+    let maiorAlturaNome;
+
+    let maiorNome = "";
+
+    let menorNome = Infinity.toString();
+
+    let generoF = 0;
+
+    let generoM = 0;
+
+    let menorCartaoAmarelo = 99999999999;
+
+    let menorCartaoAmareloNome = "";
+
+    let maiorCartaoAmarelo = 0;
+
+    let maiorCartaoAmareloNome = "";
+
+    let maiorCartaoVermelho = 0;
+
+    let maiorCartaoVermelhoNome = "";
+
+    let menorCartaoVermelho = Infinity;
+
+    let menorCartaoVermelhoNome = "";
+
+    let separarDados = "-".padEnd(40, "-");
+
+    while (indice < 22) {
+        let nome = prompt("Digite seu nome").trim();
+
+        if (nome.length > maiorNome.length) {
+            maiorNome = nome;
+        }
+
+        if (nome.length < menorNome.length) {
+            menorNome = nome;
+        }
+
+        let idade = parseInt(prompt("Digite sua idade").trim());
+
+        let peso = parseFloat(prompt("Digite o peso").trim().replace(".", ","));
+
+        if (peso < menorPeso) {
+            menorPeso = peso;
+            menorPesoNome = nome;
+        };
+
+        if (peso > maiorPeso) {
+            maiorPeso = peso;
+            maiorPesoNome = nome;
+        };
+
+        let genero = prompt("Digite o genêro (F/M)").trim();
+
+        if (genero.toLowerCase() === "f") {
+            generoF = generoF + 1;
+        } else if (genero.toLowerCase() === "m") {
+            generoM = generoM + 1;
+        }
+
+        let altura = parseFloat(prompt("Digite a altura").trim().replace(".", ","));
+
+        if (altura > maiorAltura) {
+            maiorAltura = altura;
+            maiorAlturaNome = nome;
+        }
+
+        let quantidadeGol = parseInt(prompt("Digite a quantidades de gols marcados").trim());
+
+        let quantidadeCartoesamarelo = parseInt(prompt("Digite as quantidades de cartões amarelos recibidos").trim());
+
+        if (quantidadeCartoesamarelo < menorCartaoAmarelo) {
+            menorCartaoAmarelo = quantidadeCartoesamarelo;
+            menorCartaoAmareloNome = nome;
+        }
+
+        if (quantidadeCartoesamarelo > maiorCartaoAmarelo) {
+            maiorCartaoAmarelo = quantidadeCartoesamarelo;
+            maiorCartaoAmareloNome = nome;
+        }
+
+        let quantidadeCartoesvermelhos = parseInt(prompt("Digite as quantidades de cartões vermelhos recibidos").trim());
+
+        if (quantidadeCartoesvermelhos > maiorCartaoVermelho) {
+            maiorCartaoVermelho = quantidadeCartoesvermelhos;
+            maiorCartaoVermelhoNome = nome;
+        }
+        if (quantidadeCartoesvermelhos < menorCartaoVermelho) {
+            menorCartaoVermelho = quantidadeCartoesvermelhos;
+            menorCartaoVermelhoNome = nome;
+        }
+
+
+        indice = indice + 1;
+    }
+
+    console.log("Jogador com o menor peso: " + menorPesoNome + "\n" + separarDados + 
+        "\nJogador com a maior altura: " + maiorAlturaNome + 
+        "\nAltura:" + maiorAltura + "\n" + separarDados + 
+        "\nJogador com o maior nome: " + maiorNome + "\n" + separarDados + 
+        "\nQuantidade de jogadores F:" + generoF +  
+        "\nQuantidade de jogadores M: " + generoM + "\n"+ separarDados + 
+        "\nJogador com menor quantidade de cartões amarelos: " + menorCartaoAmareloNome + 
+        "\nQuantidade: " + menorCartaoAmarelo + "\n" + separarDados +
+        "\nJogador com o menor nome: " + menorNome + "\n" + separarDados + 
+        "\nJogador com o maior peso: " + maiorPesoNome + "\n" + separarDados + 
+        "\nJogador com a maior quantidade de cartões vermelhos: " + maiorCartaoVermelhoNome + 
+        "\nQuantidade: " + maiorCartaoVermelho + "\n" + separarDados +
+        "\nJogador com maior quantidade de cartões amarelos: " + maiorCartaoAmareloNome + "\n" + separarDados +  
+        "\nJogador com a menor quantidade de cartões vermelhos: " + menorCartaoVermelhoNome)
+};
